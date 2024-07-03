@@ -6,8 +6,9 @@ def index():
 
 @app.route("/main",methods=["GET","POST"])
 def main():
-  r= request.form.get("q")
-  print(r)
-  return(render_template("main.html",))      
+    r= request.form.get("q")
+    print(r)
+    return(render_template("main.html",)) 
+  
 if __name__ == "__main__":
   app.run()
