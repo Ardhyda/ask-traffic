@@ -10,5 +10,11 @@ def main():
     print(r)
     return(render_template("main.html",)) 
   
+@app.route("/traffic_thailand",methods=["GET","POST"])
+def traffic_thailand():
+    r= request.form.get("q")
+    print(r)
+    return(render_template("traffic_thailand.html",)) 
+  
 if __name__ == "__main__":
   app.run()
