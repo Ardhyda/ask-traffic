@@ -1,4 +1,12 @@
 from flask import Flask, render_template, request
+import google.generativeai as palm
+
+palm.configure(api_key="AIzaSyA_cMejzos-vNUHW6y028jJxB9x1PMQJpw")
+
+model = {"model": "models/chat-bison-001"}
+
+
+
 app = Flask(__name__)
 @app.route("/", methods=["GET","POST"])
 def index():
@@ -8,13 +16,13 @@ def index():
 def main():
     r= request.form.get("q")
     print(r)
-    return(render_template("main.html",)) 
+    return(render_template("main.html", r=r)) 
   
 @app.route("/traffic_thailand",methods=["GET","POST"])
 def traffic_thailand():
-    r= request.form.get("q")
-    print(r)
-    return(render_template("traffic_thailand.html",)) 
+    q= "thailand traffic"
+    r= palm.chat(**model, messages=q)
+    return(render_template("traffic_thailand.html", r=r)) 
   
 if __name__ == "__main__":
-  app.run()
+    app.run()
